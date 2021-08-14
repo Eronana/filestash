@@ -19,7 +19,6 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            max-width: 800px;
             margin: 0 auto;
             width: 100%;
             > div{margin: auto;}
@@ -31,7 +30,6 @@
 /* SKIN FOR VIDEOJS: */
 .video-js{
     font-size: 14px; /* Chromium bug */
-    max-height: 500px;
 
     .vjs-control-bar{
         background: rgba(255,255,255,0.2);

@@ -109,7 +109,17 @@
 
     // GRID VIEW
     > .component_thing.view-grid{
-        width: 25%; .box{ height: 160px;}
+        width: 165px; .box{ height: 160px;}
+        @media (max-width: 2310px){width: 7.14%;}
+        @media (max-width: 2145px){width: 7.69%;}
+        @media (max-width: 1980px){width: 8.33%;}
+        @media (max-width: 1815px){width: 9.09%;}
+        @media (max-width: 1650px){width: 10%;}
+        @media (max-width: 1485px){width: 11.11%;}
+        @media (max-width: 1320px){width: 12.5%;}
+        @media (max-width: 1155px){width: 14.28%;}
+        @media (max-width: 990px){width: 16.66%;}
+        @media (max-width: 825px){width: 20%;}
         @media (max-width: 699px){width: 33.33%; .box{height: 200px} }
         @media (max-width: 670px){.box{height: 170px}}
         @media (max-width: 550px){width: 50%; .box{height: 200px} }
