@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 	"strings"
-	"fmt"
+	"golang.org/x/crypto/bcrypt"
 )
 
 
@@ -19,6 +19,15 @@ func init() {
 }
 
 func (s FileSystem) Init(params map[string]string, app *App) (IBackend, error) {
+  admin := Config.Get("auth.admin").String()
+  if admin == "" {
+    return nil, NewError("Missing admin account, please contact your administrator", 500)
+  }
+
+  if err := bcrypt.CompareHashAndPassword([]byte(admin), []byte(params["password"])); err != nil {
+    return nil, ErrInvalidPassword
+  }
+
 	s.rootPath = strings.TrimRight(params["rootPath"], "/")
 	return &s, nil
 }
@@ -30,6 +39,11 @@ func (b FileSystem) LoginForm() Form {
 				Name:        "type",
 				Type:        "hidden",
 				Value:       "filesystem",
+			},
+			FormElement{
+				Name:        "password",
+				Type:        "password",
+				Placeholder: "Passphrase",
 			},
 			FormElement{
 				Name:        "rootPath",
@@ -45,9 +59,6 @@ func (b FileSystem) GetFullPath(path string) (string) {
 }
 
 func (b FileSystem) Ls(path string) ([]os.FileInfo, error) {
-	fmt.Println(path)
-	fmt.Println(b.GetFullPath(path))
-	fmt.Println(ioutil.ReadDir(b.GetFullPath(path)))
 	return ioutil.ReadDir(b.GetFullPath(path))
 }
 
