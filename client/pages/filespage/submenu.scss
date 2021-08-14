@@ -15,7 +15,7 @@
             margin: 5px 0 10px 0;
 
             /* Create Buttons */
-            > span, form label {
+            > span,a, form label {
                 display: inline-block;
                 margin-top: -5px;
                 border-radius: 2px;
@@ -26,7 +26,7 @@
                 }
                 @include ripple(var(--bg-color));
             }
-            > span{
+            > span,a{
                 padding: 5px 8px;
                 letter-spacing: 0.06em;
                 display: inline-block;

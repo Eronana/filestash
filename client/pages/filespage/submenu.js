@@ -6,6 +6,15 @@ import { Card, NgIf, Icon, EventEmitter, Dropdown, DropdownButton, DropdownList,
 import { pathBuilder, debounce, prompt } from '../../helpers/';
 import { t } from '../../locales/';
 import "./submenu.scss";
+import { Link } from 'react-router-dom';
+
+const FILES_BASE_PATH = '/files/';
+
+function getParentPath() {
+  return '/files/'
+    + location.pathname.substr(7).replace(/[^\/]+\/($|\?)/, '$1')
+    + window.location.search;
+}
 
 @EventEmitter
 export class Submenu extends React.Component {
@@ -119,6 +128,11 @@ export class Submenu extends React.Component {
             <div className="component_submenu">
               <Container>
                 <div className={"menubar no-select "+(this.state.search_input_visible ? "search_focus" : "")}>
+                  <Link
+                    to={getParentPath()}
+                    onClick={(ev) => location.pathname === FILES_BASE_PATH && ev.preventDefault()}>
+                    { window.innerWidth < 410 && t("Parent").length > 10 ? t("Parent", null, "PARENT::SHORT") : t("Parent") }
+                  </Link>
                   <NgIf cond={this.props.accessRight.can_create_file !== false && this.props.selected.length === 0} onClick={this.onNew.bind(this, 'file')} type="inline">
                     { window.innerWidth < 410 && t("New File").length > 10 ? t("New File", null, "NEW_FILE::SHORT") : t("New File") }
                   </NgIf>
