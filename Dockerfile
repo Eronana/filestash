@@ -19,8 +19,8 @@ FROM debian:stable-slim
 
 WORKDIR /usr/src/app
 RUN apt-get update; apt install -y libglib2.0
-COPY --from=backend /build/dist/* ./
-COPY --from=frontend /build/dist/* ./
+COPY --from=backend /build/dist/ ./
+COPY --from=frontend /build/dist/ ./
 COPY config ./data/state/config
 
 EXPOSE 8334
