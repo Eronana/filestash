@@ -4,7 +4,7 @@ WORKDIR /build
 COPY server server
 COPY vendor vendor
 COPY go.mod go.sum Makefile ./
-RUN make build_backend
+RUN make build_init && make build_backend
 
 FROM node:12 as frontend
 
