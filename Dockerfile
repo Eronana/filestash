@@ -3,6 +3,7 @@ RUN apt update && apt install -y libglib2.0
 WORKDIR /build
 COPY server server
 COPY vendor vendor
+COPY config config
 COPY go.mod go.sum Makefile ./
 RUN make build_init && make build_backend
 
