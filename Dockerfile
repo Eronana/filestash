@@ -18,7 +18,7 @@ RUN make build_frontend
 FROM debian:stable-slim
 
 WORKDIR /usr/src/app
-RUN apt-get update; apt install -y libglib2.0 && \
+RUN apt-get update; apt install -y libglib2.0-0 && \
 #################
     # Optional dependencies
     apt-get install -y curl tor emacs-nox ffmpeg zip poppler-utils > /dev/null && \
