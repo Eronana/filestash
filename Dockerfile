@@ -1,5 +1,5 @@
 FROM golang as backend
-RUN apt update && apt install -y libglib2.0
+RUN apt update && apt install -y libglib2.0-0
 WORKDIR /build
 COPY server server
 COPY vendor vendor
